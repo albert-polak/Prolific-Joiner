@@ -63,6 +63,7 @@ class ProlificUpdater:
             
     
     def get_bearer_token(self) -> str:
+        playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
         print("Getting a new bearer token...")
         pageurl = 'https://internal-api.prolific.com/auth/accounts/login/'
 
@@ -116,10 +117,11 @@ class ProlificUpdater:
                         console.print(f"""[bold red][+] Error code {str(reserve_place_res.json()["error"]["error_code"])}
                                       \nTitle : {str(reserve_place_res.json()["error"]["title"])}
                                       \nDetails : {str(reserve_place_res.json()["error"]["detail"])}""")
-                        status.stop()
-                        exit()
+                        # status.stop()
+                        # exit()
+                        return False
                 else:
-                    playsound(fr'{Path(__file__).parent}\alert.wav', True)
+                    playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
                     a_website = "https://app.prolific.com/studies"
                     open_new_tab(a_website)
         
@@ -180,6 +182,7 @@ if __name__ == "__main__":
     status =  console.status("[bold blue] Waiting for study...",spinner="arc")
     status.start()
     while (True):
+        # print(1)
         updateTime = config["wait_time"]
         if(p_updater.executeCycle()):
             status.stop()
@@ -194,7 +197,7 @@ if __name__ == "__main__":
             if idle_duration >= 600:  # 10 minutes in seconds
                 pause_script()                  
             # else:
-            #     print(f"Idle Time: {idle_duration} seconds [script not paused]") #leave commented if not debugging
+                # print(f"Idle Time: {idle_duration} seconds [script not paused]") #leave commented if not debugging
 
         # Generate a random integer between -5 and 5
         random_offset = random.randint(-5, 5)
