@@ -66,7 +66,7 @@ class ProlificUpdater:
         # playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
         print("Getting a new bearer token...")
         pageurl = 'https://internal-api.prolific.com/auth/accounts/login/'
-
+        service = Service(executable_path='/data/data/com.termux/files/usr/lib/chromium/chromedriver')
         options = Options()
         
         options = webdriver.ChromeOptions()
@@ -79,7 +79,7 @@ class ProlificUpdater:
         options.add_argument('--disable-web-security')
         options.add_argument('--disable-site-isolation-trials')
         options.add_argument('--headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver = webdriver.Chrome(service=service, options=options)
         driver.get(pageurl)
         status = 0
         start = time()
