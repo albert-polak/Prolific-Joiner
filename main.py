@@ -68,13 +68,18 @@ class ProlificUpdater:
         pageurl = 'https://internal-api.prolific.com/auth/accounts/login/'
 
         options = Options()
+        
+        options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--headless=new")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         options.add_argument('--disable-web-security')
         options.add_argument('--disable-site-isolation-trials')
         options.add_argument('--headless')
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options= options)
+        driver = webdriver.Chrome(options=options)
         driver.get(pageurl)
         status = 0
         start = time()
