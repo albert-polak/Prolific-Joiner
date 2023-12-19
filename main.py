@@ -14,7 +14,7 @@ from argparse import ArgumentParser
 from rich.console import Console
 from rich.text import Text
 from pypasser import reCaptchaV3
-from playsound import playsound
+# from playsound import playsound
 import random
 import platform
 if platform.system() == 'Windows':
@@ -63,7 +63,7 @@ class ProlificUpdater:
             
     
     def get_bearer_token(self) -> str:
-        playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
+        # playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
         print("Getting a new bearer token...")
         pageurl = 'https://internal-api.prolific.com/auth/accounts/login/'
 
@@ -120,10 +120,10 @@ class ProlificUpdater:
                         # status.stop()
                         # exit()
                         return False
-                else:
-                    playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
-                    a_website = "https://app.prolific.com/studies"
-                    open_new_tab(a_website)
+                # else:
+                #     # playsound(f"{Path(__file__).parent}" + "\\alert.wav", True)
+                #     a_website = "https://app.prolific.com/studies"
+                #     open_new_tab(a_website)
         
         self.oldResults = results
         
